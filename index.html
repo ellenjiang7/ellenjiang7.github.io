@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ellen Jiang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ─── Reset & Base ─── */
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --color-bg: #fafaf8;
+        --color-text: #1a1a18;
+        --color-text-secondary: #444441;
+        --color-text-tertiary: #8a8a84;
+        --color-accent: #0a9e7e;
+        --color-accent-hover: #145247;
+        --color-border: #e4e4df;
+        --color-card-bg: #ffffff;
+        --color-tag-bg: #f0efeb;
+        --font-display: "DM Serif Display", Georgia, serif;
+        --font-body: "Source Sans 3", "Source Sans Pro", system-ui, sans-serif;
+        --max-width: 960px;
+        --space-xs: 0.5rem;
+        --space-sm: 1rem;
+        --space-md: 1.75rem;
+        --space-lg: 2.5rem;
+        --space-lg-xl: 3.5rem;
+        --space-xl: 4.5rem;
+        --space-2xl: 6.5rem;
+      }
+
+      html {
+        font-size: 17px;
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      body {
+        font-family: var(--font-body);
+        color: var(--color-text);
+        background: var(--color-bg);
+        line-height: 1.7;
+        font-weight: 400;
+      }
+
+      ::selection {
+        background: #2b5a4d22;
+      }
+
+      a {
+        color: var(--color-accent);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      a:hover {
+        color: var(--color-accent-hover);
+      }
+
+      /* ─── Layout ─── */
+      .container {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 var(--space-md);
+      }
+
+      section {
+        padding: var(--space-lg-xl) 0;
+      }
+
+      /* ─── Hero ─── */
+      .hero {
+        padding: var(--space-2xl) 0 var(--space-xl);
+      }
+
+      .hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 5vw, 3.2rem);
+        font-weight: 400;
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+        margin-bottom: var(--space-md);
+      }
+
+      .hero .tagline {
+        font-size: 1.15rem;
+        color: var(--color-text-secondary);
+        max-width: 520px;
+        line-height: 1.65;
+        font-weight: 300;
+      }
+
+      /* ─── Section Headers ─── */
+      .section-label {
+        font-family: var(--font-body);
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--color-text-tertiary);
+        margin-bottom: var(--space-md);
+      }
+
+      /* ─── Project Cards ─── */
+      .projects-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-lg);
+      }
+
+      .project-card {
+        display: grid;
+        grid-template-columns: 340px 1fr;
+        gap: var(--space-md);
+        align-items: start;
+        opacity: 0;
+        transform: translateY(16px);
+        animation: fadeUp 0.5s ease forwards;
+      }
+
+      .project-card:nth-child(1) {
+        animation-delay: 0.05s;
+      }
+      .project-card:nth-child(2) {
+        animation-delay: 0.12s;
+      }
+      .project-card:nth-child(3) {
+        animation-delay: 0.19s;
+      }
+      .project-card:nth-child(4) {
+        animation-delay: 0.26s;
+      }
+      .project-card:nth-child(5) {
+        animation-delay: 0.33s;
+      }
+      .project-card:nth-child(6) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .project-thumbnail {
+        width: 340px;
+        height: 220px;
+        border-radius: 6px;
+        background: var(--color-tag-bg);
+        overflow: hidden;
+        flex-shrink: 0;
+        border: 1px solid var(--color-border);
+      }
+
+      .project-thumbnail .placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        color: var(--color-text-tertiary);
+        font-style: italic;
+      }
+
+      .project-thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .project-info h3 {
+        font-family: var(--font-display);
+        font-size: 1.35rem;
+        font-weight: 400;
+        margin-bottom: 0.35rem;
+        line-height: 1.3;
+      }
+
+      .project-info .description {
+        font-size: 0.95rem;
+        color: var(--color-text-secondary);
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+      }
+
+      .project-info .role {
+        font-size: 0.85rem;
+        color: var(--color-text-tertiary);
+        margin-bottom: 0.75rem;
+        line-height: 1.55;
+      }
+
+      .project-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+
+      .project-links a {
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding: 0.3rem 0.7rem;
+        border-radius: 4px;
+        background: var(--color-tag-bg);
+        color: var(--color-accent);
+        transition:
+          background 0.2s ease,
+          color 0.2s ease;
+      }
+
+      .project-links a:hover {
+        background: var(--color-accent);
+        color: #fff;
+      }
+
+      /* ─── Publications ─── */
+      .pub-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .pub-list li {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+
+      .pub-list li a {
+        font-size: 1rem;
+        line-height: 1.45;
+        font-weight: 400;
+      }
+
+      .pub-venue {
+        font-size: 0.8rem;
+        color: var(--color-text-tertiary);
+        font-weight: 400;
+      }
+
+      /* ─── Divider ─── */
+      .divider {
+        border: none;
+        border-top: 1px solid var(--color-border);
+        margin: 0;
+      }
+
+      /* ─── About ─── */
+      .about p {
+        font-size: 1.05rem;
+        color: var(--color-text-secondary);
+        max-width: 640px;
+        line-height: 1.75;
+        font-weight: 300;
+      }
+
+      .about p + p {
+        margin-top: var(--space-sm);
+      }
+
+      /* ─── Footer / Links ─── */
+      .footer {
+        padding: var(--space-lg) 0 var(--space-2xl);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: var(--space-md);
+        flex-wrap: wrap;
+      }
+
+      .footer-links a {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--color-text-secondary);
+        transition: color 0.2s ease;
+        position: relative;
+      }
+
+      .footer-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--color-accent);
+        transition: width 0.25s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--color-accent);
+      }
+
+      .footer-links a:hover::after {
+        width: 100%;
+      }
+
+      /* ─── Responsive ─── */
+      @media (max-width: 740px) {
+        html {
+          font-size: 16px;
+        }
+
+        .hero {
+          padding: var(--space-xl) 0 var(--space-lg);
+        }
+
+        section {
+          padding: var(--space-lg) 0;
+        }
+
+        .project-card {
+          grid-template-columns: 1fr;
+        }
+
+        .project-thumbnail {
+          width: 100%;
+          height: 180px;
+        }
+
+        .footer-links {
+          flex-direction: column;
+          gap: var(--space-sm);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ─── Hero ─── -->
+    <header class="hero">
+      <div class="container">
+        <h1>Ellen Jiang</h1>
+        <p class="tagline">Code, design, paint</p>
+      </div>
+    </header>
+
+    <!-- ─── Projects ─── -->
+    <section class="projects">
+      <div class="container">
+        <p class="section-label">Selected Work</p>
+        <div class="projects-list">
+          <!-- Lumi -->
+          <article class="project-card">
+            <div class="project-thumbnail">
+              <img
+                src="assets/lumi_image.webp"
+                alt="Lumi interface diagram showing sidebar and annotated research paper"
+              />
+            </div>
+            <div class="project-info">
+              <h3>Lumi</h3>
+              <p class="description">
+                An AI-augmented reading interface that keeps you grounded in the
+                source material.
+              </p>
+              <p class="role">
+                Concept, design, and engineering. Built the full production app
+                with Firebase backend. Published on Google PAIR blog.
+              </p>
+              <div class="project-links">
+                <a href="http://lumi.withgoogle.com" target="_blank"
+                  >Live App</a
+                >
+                <a
+                  href="https://medium.com/people-ai-research/read-smarter-not-harder-with-lumi-6a1a8210ccc7"
+                  target="_blank"
+                  >Blog Post</a
+                >
+                <a href="https://github.com/PAIR-code/lumi" target="_blank"
+                  >Source</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- Dear Upstairs Neighbors -->
+          <article class="project-card">
+            <div class="project-thumbnail">
+              <img
+                src="assets/DUN_poster_9x16.width-1300.png"
+                alt="Dear Upstairs Neighbors poster"
+                style="object-position: top center"
+              />
+            </div>
+            <div class="project-info">
+              <h3>Dear Upstairs Neighbors</h3>
+              <p class="description">
+                An animated short film made with Google DeepMind, premiered at
+                Sundance 2026.
+              </p>
+              <p class="role">
+                Effects animator and research engineer. Generated stylized shots
+                using AI video pipelines, plus hand-drawn 2D effects animation
+                and painting.
+              </p>
+              <div class="project-links">
+                <a
+                  href="https://blog.google/innovation-and-ai/models-and-research/google-deepmind/dear-upstairs-neighbors/"
+                  target="_blank"
+                  >Google Blog</a
+                >
+                <!-- <a href="#" target="_blank">IMDB</a> -->
+              </div>
+            </div>
+          </article>
+
+          <!-- Colorfill -->
+          <article class="project-card">
+            <div class="project-thumbnail">
+              <img
+                src="assets/colorfill_image.png"
+                alt="Grid of 365 daily paintings made in Colorfill"
+              />
+            </div>
+            <div class="project-info">
+              <h3>Colorfill + 365 Paintings</h3>
+              <p class="description">
+                A digital painting app I built, then used every day for a year.
+              </p>
+              <p class="role">
+                Solo project. Built the app, then completed 365 daily paintings
+                in it.
+              </p>
+              <div class="project-links">
+                <a href="https://colorfill.app" target="_blank"
+                  >Colorfill App</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- PAIR Explorables -->
+          <article class="project-card">
+            <div class="project-thumbnail">
+              <img
+                src="assets/explorables.png"
+                alt="Interactive visualizations from PAIR Explorables articles"
+              />
+            </div>
+            <div class="project-info">
+              <h3>PAIR Explorables</h3>
+              <p class="description">
+                Interactive explainers on ML privacy concepts, published on
+                Google PAIR.
+              </p>
+              <p class="role">
+                Contributing author. Built interactive visualizations for two
+                articles on differential privacy and data leakage.
+              </p>
+              <div class="project-links">
+                <a
+                  href="https://pair.withgoogle.com/explorables/anonymization/"
+                  target="_blank"
+                  >Randomized Response</a
+                >
+                <a
+                  href="https://pair.withgoogle.com/explorables/data-leak/"
+                  target="_blank"
+                  >Why Some Models Leak Data</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- Depth Predictions in Art -->
+          <article class="project-card">
+            <div class="project-thumbnail">
+              <img
+                src="assets/depth_predictions_in_art_image.png"
+                alt="3D depth visualization of a painting"
+              />
+            </div>
+            <div class="project-info">
+              <h3>Depth Predictions in Art</h3>
+              <p class="description">
+                Exploring how ML depth prediction models interpret 63,000
+                paintings across art history.
+              </p>
+              <p class="role">
+                PAIR intern project. Built the interactive visualization and
+                co-authored the blog post.
+              </p>
+              <div class="project-links">
+                <a
+                  href="https://storage.googleapis.com/art_history_depth_data/demo/index.html"
+                  target="_blank"
+                  >Interactive Demo</a
+                >
+                <a
+                  href="https://pair-code.github.io/depth-maps-art-and-illusions/art_history_vis/blogpost/blogpost_1.html"
+                  target="_blank"
+                  >Blog (Part 1)</a
+                >
+                <a
+                  href="https://pair-code.github.io/depth-maps-art-and-illusions/art_history_vis/blogpost/blogpost_2.html"
+                  target="_blank"
+                  >Blog (Part 2)</a
+                >
+                <a
+                  href="https://github.com/PAIR-code/depth-maps-art-and-illusions"
+                  target="_blank"
+                  >Source</a
+                >
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Publications ─── -->
+    <section class="publications">
+      <div class="container">
+        <p class="section-label">Publications</p>
+        <ul class="pub-list">
+          <li>
+            <a href="https://arxiv.org/abs/2203.06566" target="_blank"
+              >PromptChainer: Chaining Large Language Model Prompts through
+              Visual Programming</a
+            >
+            <span class="pub-venue">CHI 2022</span>
+          </li>
+          <li>
+            <a
+              href="https://dl.acm.org/doi/10.1145/3491102.3501870"
+              target="_blank"
+              >Discovering the Syntax and Strategies of Natural Language
+              Programming with Generative Language Models</a
+            >
+            <span class="pub-venue">CHI 2022</span>
+          </li>
+          <li>
+            <a
+              href="https://dl.acm.org/doi/fullHtml/10.1145/3491101.3503564"
+              target="_blank"
+              >PromptMaker: Prompt-based Prototyping with Large Language
+              Models</a
+            >
+            <span class="pub-venue">CHI EA 2022</span>
+          </li>
+          <li>
+            <a href="https://arxiv.org/abs/2108.07732" target="_blank"
+              >Program Synthesis with Large Language Models</a
+            >
+            <span class="pub-venue">arXiv 2021</span>
+          </li>
+          <li>
+            <a href="https://arxiv.org/abs/2008.05122" target="_blank"
+              >The Language Interpretability Tool: Extensible, Interactive
+              Visualizations and Analysis for NLP Models</a
+            >
+            <span class="pub-venue">EMNLP 2020 Demo</span>
+          </li>
+          <li>
+            <a href="https://arxiv.org/abs/2009.08026" target="_blank"
+              >ShapeAssembly: Learning to Generate Programs for 3D Shape
+              Structure Synthesis</a
+            >
+            <span class="pub-venue">SIGGRAPH Asia 2020</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="container"><hr class="divider" /></div>
+
+    <!-- ─── About ─── -->
+    <section class="about">
+      <div class="container">
+        <p class="section-label">About</p>
+        <p>
+          I'm a research engineer on Google DeepMind's
+          <a href="https://pair.withgoogle.com/" target="_blank"
+            >People + AI Research</a
+          >
+          team, where I build and design interactive tools. I like to work where
+          technical and creative thinking overlap.
+        </p>
+        <p>
+          I studied computer science at Brown, where I interned at the Pixar
+          Undergraduate Program and was Head TA for the
+          <a href="http://cs.brown.edu/courses/csci1250/" target="_blank"
+            >3D computer animation course</a
+          >. I also <a href="https://www.ellenart.me" target="_blank">paint</a>.
+        </p>
+      </div>
+    </section>
+
+    <div class="container"><hr class="divider" /></div>
+
+    <!-- ─── Footer ─── -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-links">
+          <a href="https://www.ellenart.me" target="_blank">Art Portfolio</a>
+          <a href="http://github.com/ellenjiang7" target="_blank">GitHub</a>
+          <a href="https://www.linkedin.com/in/ellenjiang2020" target="_blank"
+            >LinkedIn</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
