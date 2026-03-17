@@ -82,12 +82,19 @@
       }
 
       strong {
-        font-weight: bold;
+        font-weight: 500;
       }
 
       /* ─── Hero ─── */
       .hero {
         padding: var(--space-2xl) 0 var(--space-xl);
+        background: linear-gradient(
+          23deg,
+          #fafaf8 5%,
+          #eef0ea 30%,
+          #d7e3db 70%,
+          #fafaf8 100%
+        );
       }
 
       .hero h1 {
@@ -96,15 +103,66 @@
         font-weight: 400;
         line-height: 1.15;
         letter-spacing: -0.01em;
-        margin-bottom: var(--space-md);
+        margin-bottom: 0.65rem;
       }
 
       .hero .tagline {
-        font-size: 1.15rem;
-        color: var(--color-text-secondary);
-        max-width: 520px;
-        line-height: 1.65;
-        font-weight: 300;
+        /* font-family: var(--font-display); */
+        font-size: clamp(1.2rem, 3vw, 1.4rem);
+        color: var(--color-text-tertiary);
+        line-height: 1.4;
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      .hero .tagline span {
+        background: linear-gradient(
+          to right,
+          transparent 0%,
+          transparent 33.3%,
+          var(--color-accent) 33.3%,
+          #3a8b7a 66.6%,
+          transparent 66.6%,
+          transparent 100%
+        );
+        background-size: 300% 100%;
+        background-position: 100% 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      @keyframes color-wipe {
+        0%,
+        3% {
+          background-position: 100% 0;
+        }
+        12%,
+        26% {
+          background-position: 50% 0;
+        }
+        33% {
+          background-position: 0% 0;
+        }
+        33.1%,
+        100% {
+          background-position: 100% 0;
+        }
+      }
+
+      .hero .tagline .w1 {
+        animation: color-wipe 7s ease infinite;
+        animation-delay: 0s;
+      }
+
+      .hero .tagline .w2 {
+        animation: color-wipe 7s ease infinite;
+        animation-delay: 2.33s;
+      }
+
+      .hero .tagline .w3 {
+        animation: color-wipe 7s ease infinite;
+        animation-delay: 4.66s;
       }
 
       /* ─── Section Headers ─── */
@@ -122,7 +180,7 @@
       .projects-list {
         display: flex;
         flex-direction: column;
-        gap: var(--space-lg);
+        gap: var(--space-lg-xl);
       }
 
       .project-card {
@@ -350,6 +408,14 @@
           gap: var(--space-sm);
         }
       }
+
+      span.underlay {
+        color: var(--color-text-tertiary) !important;
+      }
+
+      .tagline:not(.tagline-under) {
+        position: absolute;
+      }
     </style>
   </head>
   <body>
@@ -357,7 +423,15 @@
     <header class="hero">
       <div class="container">
         <h1>Ellen Jiang</h1>
-        <p class="tagline">Code, design, paint</p>
+        <p class="tagline">
+          <span class="w1">Code</span>, <span class="w2">design</span>,
+          <span class="w3">paint</span>
+        </p>
+        <p class="tagline tagline-under">
+          <span class="w1 underlay">Code</span>,
+          <span class="w2 underlay">design</span>,
+          <span class="w3 underlay">paint</span>
+        </p>
       </div>
     </header>
 
@@ -592,7 +666,7 @@
     <!-- ─── About ─── -->
     <section class="about">
       <div class="container">
-        <p class="section-label">About</p>
+        <p class="section-label"><b>About</b></p>
         <p>
           I'm a research engineer on Google DeepMind's
           <a href="https://pair.withgoogle.com/" target="_blank"
