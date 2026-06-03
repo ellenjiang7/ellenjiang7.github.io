@@ -132,39 +132,6 @@
         color: transparent;
       }
 
-      @keyframes color-wipe {
-        0%,
-        3% {
-          background-position: 100% 0;
-        }
-        12%,
-        26% {
-          background-position: 50% 0;
-        }
-        33% {
-          background-position: 0% 0;
-        }
-        33.1%,
-        100% {
-          background-position: 100% 0;
-        }
-      }
-
-      .hero .tagline .w1 {
-        animation: color-wipe 7s ease infinite;
-        animation-delay: 0s;
-      }
-
-      .hero .tagline .w2 {
-        animation: color-wipe 7s ease infinite;
-        animation-delay: 2.33s;
-      }
-
-      .hero .tagline .w3 {
-        animation: color-wipe 7s ease infinite;
-        animation-delay: 4.66s;
-      }
-
       /* ─── Section Headers ─── */
       .section-label {
         font-family: var(--font-body);
@@ -412,10 +379,6 @@
       span.underlay {
         color: var(--color-text-tertiary) !important;
       }
-
-      .tagline:not(.tagline-under) {
-        position: absolute;
-      }
     </style>
   </head>
   <body>
@@ -423,12 +386,8 @@
     <header class="hero">
       <div class="container">
         <h1>Ellen Jiang</h1>
-        <p class="tagline">
-          <span class="w1">Code</span>, <span class="w2">design</span>,
-          <span class="w3">paint</span>
-        </p>
         <p class="tagline tagline-under">
-          <span class="w1 underlay">Code</span>,
+          <span class="w1 underlay">code</span>,
           <span class="w2 underlay">design</span>,
           <span class="w3 underlay">paint</span>
         </p>
@@ -672,7 +631,7 @@
           <a href="https://pair.withgoogle.com/" target="_blank"
             >People + AI Research</a
           >
-          team, where I build and design interactive tools. I like to work where
+          team, where I design and build interactive tools. I like to work where
           technical and creative thinking overlap.
         </p>
         <p>
